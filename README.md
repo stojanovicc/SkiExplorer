@@ -106,3 +106,9 @@ npm start
 - Integracija sa realnim meteorološkim API servisom
 - Napredniji sistem preporuka
 - Optimizacija performansi pri radu sa većim skupovima podataka
+
+---
+
+## 👩‍💻 Autori
+- Anđela Stojanović
+- Anastasija Trajković
