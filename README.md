@@ -1,54 +1,106 @@
-# Napredne Baze Podataka: SkiExplorer - Neo4j + Cassandra
+# 🎿 SkiExplorer – Napredne baze podataka (Neo4j + Cassandra)
 
-#  Contributors (Student, Br.Indeksa)
-  - Anđela Stojanović, 18406
-  - Anastasija Trajković, 18456
+## 📌 Opis projekta
 
-# Stack
- - Cassandra
- - Neo4J
- - Asp.net WebApi
- - React(JS)
+**SkiExplorer** je full-stack web aplikacija razvijena kao projekat iz predmeta *Napredne baze podataka*.
 
-# Clone repository
- - git clone https://github.com/stojanovicc/NBP.git
- - cd NBP
+Cilj projekta je demonstracija rada sa **graf bazom (Neo4j)** i **distribuiranom NoSQL bazom (Cassandra)** u okviru jedne aplikacije, uz backend implementiran u ASP.NET Web API i frontend u React-u.
 
-# Cassandra
-**1. Korak:** pokrenuti Cassandru
+Aplikacija omogućava upravljanje podacima o skijalištima, stazama, aktivnostima, obaveštenjima i vremenskim uslovima, kao i funkcionalnost preporuke staza na osnovu nivoa skijanja korisnika.
 
-**2. Korak:** USE my_keyspace;
+---
 
-**3. Korak:** Kreirati sledece tabele u Cassandri
-- CREATE TABLE Skijaliste(naziv TEXT PRIMARY KEY, lokacija TEXT);
-- CREATE TABLE Staza(naziv TEXT PRIMARY KEY, tezina TEXT, duzina FLOAT, skijaliste_naziv TEXT, lokacija TEXT);
-- CREATE TABLE Aktivnost(naziv TEXT, opis TEXT, cena FLOAT, skijaliste_naziv TEXT, lokacija TEXT, PRIMARY KEY(naziv, skijaliste_naziv));
-- CREATE TABLE Obavestenje(naslov TEXT, sadrzaj TEXT, datumobjave TEXT, status TEXT, skijaliste_naziv TEXT, lokacija TEXT, PRIMARY KEY(naslov, skijaliste_naziv));
-- CREATE TABLE VremenskaPrognoza(datum TEXT, temperatura INT, uvindex INT, brzinavetra FLOAT, vlaznostvazduha INT, padavine TEXT, pritisak FLOAT, skijaliste TEXT, PRIMARY KEY(datum, skijaliste));
+## 🏗️ Arhitektura sistema
 
-# Neo4J
-- http://localhost:7474/browser/
-- **username:** neo4j
-- **password:** anastasijaandjela
+Aplikacija je realizovana kao client-server sistem:
 
-# Server start
-  - cd ../NBP/SkiExplorer
-  - dotnet watch run
+- 🔹 Backend: ASP.NET Web API
+- 🔹 Frontend: React (JS)
+- 🔹 Graf baza: Neo4j
+- 🔹 Distribuirana baza: Cassandra
 
-# Client start
-  - npm install
-  - npm install @mui/icons-material
-  - npm start
+### 📊 Podela odgovornosti baza
 
-**NAPOMENA:** ukoliko ne bude bilo moguće startovati Client-a, samo instalirajte ono za šta izbacuje grešku!
+**Neo4j** je korišćen za:
+- modelovanje relacija između skijališta i staza
+- implementaciju funkcionalnosti preporuke staza
+- graf analizu i povezivanje entiteta
 
-# BITAN DODATAK DA BI SE APLIKACIJA USPEŠNO IZVRŠILA
-**1. Težina staze**
-    - unos težine staze treba biti **plava**, **crna** ili **crvena** !
-    
-**2. Funkcija Preporuka Staza**
-    - kada se testira ova funkcija neophodno je da NIVO SKIJANJA bude **nizak**, **srednji** ili **visok**, kako bi se korisniku preporučila adekvatna staza na osnovu njegovog nivoa skijanja.
-    - nizak nivo je za plavu, srednji za crvenu, a visok za crnu stazu !
+**Cassandra** je korišćena za:
+- skladištenje strukturiranih podataka o:
+  - skijalištima
+  - stazama
+  - aktivnostima
+  - obaveštenjima
+  - vremenskoj prognozi
+- demonstraciju rada sa distribuiranim NoSQL sistemom
 
-**3. Promena vremenske prognoze**
-    - kako bi se videla promena vremenske potrebno je u formi zatražiti prikaz te vremenske sa željenim datumom, iz razloga što je zamišljeno da se vremenska iz sekunde u sekundu menja, i nema potrebe za osvežavanjem već prikazane vremenske.
+---
+
+## 🚀 Funkcionalnosti aplikacije
+
+- Upravljanje skijalištima i stazama
+- Evidencija aktivnosti i obaveštenja
+- Demonstracija vremenske prognoze
+- Preporuka staza na osnovu nivoa skijanja korisnika
+
+### 🎯 Preporuka staza
+
+Na osnovu unetog nivoa skijanja:
+
+- **nizak nivo** → plava staza  
+- **srednji nivo** → crvena staza  
+- **visok nivo** → crna staza  
+
+Logika preporuke realizovana je kroz graf relacije u Neo4j bazi.
+
+---
+
+## 🌦️ Vremenska prognoza (Demonstracija)
+
+Sistem sadrži modul za prikaz vremenske prognoze.
+
+⚠️ Napomena:  
+Vremenska prognoza je simulirana i služi kao demonstracija funkcionalnosti sistema. Aplikacija nije povezana sa realnom meteorološkom stanicom niti eksternim API servisom.
+
+Podaci se generišu u okviru sistema radi testiranja rada sa bazom i prikaza promena vremenskih parametara.
+
+---
+
+## 🧰 Tehnologije
+
+- C#
+- ASP.NET Web API
+- React (JavaScript)
+- Neo4j
+- Cassandra
+- REST arhitektura
+
+---
+
+## ⚙️ Pokretanje aplikacije (lokalno)
+
+### 1️⃣ Pokretanje baza
+
+Potrebno je pokrenuti:
+- Cassandra
+- Neo4j
+
+### 2️⃣ Backend
+
+```bash
+cd SkiExplorer
+dotnet run
+```
+### 3️⃣ Frontend
+
+```bash
+npm install
+npm start
+```
+
+📈 Buduća unapređenja
+- Interaktivna ski mapa sa grafičkim prikazom staza
+- Integracija sa realnim meteorološkim API servisom
+- Napredniji sistem preporuka
+- Optimizacija performansi pri radu sa većim skupovima podataka
