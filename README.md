@@ -99,7 +99,9 @@ npm install
 npm start
 ```
 
-📈 Buduća unapređenja
+---
+
+## 📈 Buduća unapređenja
 - Interaktivna ski mapa sa grafičkim prikazom staza
 - Integracija sa realnim meteorološkim API servisom
 - Napredniji sistem preporuka
